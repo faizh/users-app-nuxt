@@ -17,6 +17,9 @@
                     </span>                
                 </template>
             </b-table>
+
+            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage">
+            </b-pagination>
         </div>
     </div>
 </template>
@@ -27,7 +30,11 @@ export default {
     data (){
         return {
             users: null,
-            fields: ['id', 'name', 'email', 'gender', 'status', 'actions']
+            fields: ['id', 'name', 'email', 'gender', 'status', 'actions'],
+            currentPage: 1,
+            rows: 100,
+            perPage: 10,
+            param: ''
         }
     },
 
@@ -57,6 +64,21 @@ export default {
                 alert('User ID : ' + userID + ' has been Deleted!')
                 location.reload()
             })
+        },
+
+        async getDataPagination() {
+            this.users = await this.$axios.$get(
+                'https://gorest.co.in/public/v2/users' + this.param
+            )
+        }
+    },
+
+    watch : {
+        currentPage: {
+            handler: function(value){
+                this.param= '?page='+value+'&per_page='+this.perPage
+                this.getDataPagination()
+            }
         }
     }
 }
