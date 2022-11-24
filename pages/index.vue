@@ -5,12 +5,13 @@
         <b-col>
           <h2>Hello!</h2>
           <h2>Welcome to Users App with Nuxt.JS</h2>
-          <nuxt-link :to="{name: 'users'}"><h5>Click here to access Users Data</h5></nuxt-link>
+          <nuxt-link :to="{ name: 'users' }"
+            ><h5>Click here to access Users Data</h5></nuxt-link
+          >
         </b-col>
       </b-row>
     </b-container>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -21,8 +22,8 @@ export default Vue.extend({
 })
 </script>
 
-<style >
-  div {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
-  }
+<style>
+div {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 </style>
