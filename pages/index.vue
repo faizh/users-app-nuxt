@@ -1,12 +1,16 @@
 <template>
   <div>
-    <div class="text-center justify-center d-flex flex-column min-vh-100">
-      <h2>Hello!</h2>
-      <h2>Welcome to Users App with Nuxt.JS</h2>
-      <h5>Click here to access Users Data</h5>
-
-    </div>
+    <b-container>
+      <b-row class="vh-100 text-center" align-v="center">
+        <b-col>
+          <h2>Hello!</h2>
+          <h2>Welcome to Users App with Nuxt.JS</h2>
+          <nuxt-link :to="{name: 'users'}"><h5>Click here to access Users Data</h5></nuxt-link>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -16,3 +20,9 @@ export default Vue.extend({
   name: 'IndexPage',
 })
 </script>
+
+<style >
+  div {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+  }
+</style>
