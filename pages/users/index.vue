@@ -62,7 +62,7 @@ export default {
                 {headers: headers}
             ).then(function(){
                 alert('User ID : ' + userID + ' has been Deleted!')
-                location.reload()
+                self.$nuxt.refresh()
             })
         },
 
@@ -70,7 +70,8 @@ export default {
             this.users = await this.$axios.$get(
                 'https://gorest.co.in/public/v2/users' + this.param
             )
-        }
+        },
+        
     },
 
     watch : {

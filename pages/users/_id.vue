@@ -120,7 +120,7 @@ export default {
                 {headers: headers}
             ).then(function(){
                 alert('Post ID : ' + postID + ' has been Deleted!')
-                location.reload()
+                self.$nuxt.refresh()    
             })
         },
 
@@ -141,7 +141,11 @@ export default {
                 {headers: headers}
             ).then(function(response){
                 alert('Post berhasil dibuat, Post ID : ' + response.id)
-                location.reload()
+                self.modalShow = !self.modalShow
+                self.formPost.title = null
+                self.formPost.body = null
+                self.formPost.id = ''
+                self.$nuxt.refresh()
             })
         }
     }
