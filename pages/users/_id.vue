@@ -42,7 +42,7 @@
             </b-card>
         </div>
 
-        <b-modal v-model="modalShow" title="BUAT POST"  hide-footer>
+        <b-modal v-model="modalShow" size="lg" title="BUAT POST"  hide-footer>
             <b-form @submit="onSubmit">
                 <b-form-group id="input-group-1" label="Title:" label-for="input-1">
                     <b-form-input id="input-1" v-model="formPost.title" placeholder="Enter Title" required></b-form-input>
@@ -58,6 +58,18 @@
                     </div>
             </b-form>
         </b-modal>
+
+        <b-modal title="Notification"
+          size="sm"
+          buttonSize="sm"
+          okVariant="success"
+          headerClass="p-2 border-bottom-0"
+          footerClass="p-2 border-top-0"
+          centered="true"
+          v-model="notifModal"
+          >
+            {{ notifMessage }}
+        </b-modal>
     </div>
     
 </template>
@@ -65,7 +77,7 @@
 <script lang="ts">
 import e from 'express'
 import Vue from 'vue'
-export default {
+export default Vue.extend({
     data() {
         return {
             user: {
@@ -81,6 +93,8 @@ export default {
             }],
             fields: ['title', 'body', 'actions'],
             modalShow: false,
+            notifModal: false,
+            notifMessage: '',
             formPost: {
                 id: '',
                 title: null,
@@ -119,7 +133,8 @@ export default {
                 'https://gorest.co.in/public/v2/posts/' + postID,
                 {headers: headers}
             ).then(function(){
-                alert('Post ID : ' + postID + ' has been Deleted!')
+                self.notifMessage = 'Post ID : ' + postID + ' has been Deleted!'
+                self.notifModal = !self.notifModal
                 self.$nuxt.refresh()    
             })
         },
@@ -140,14 +155,17 @@ export default {
                 },
                 {headers: headers}
             ).then(function(response){
-                alert('Post berhasil dibuat, Post ID : ' + response.id)
+                self.notifMessage = 'Post has been Created! Post ID : ' + response.id
+                self.notifModal = !self.notifModal
                 self.modalShow = !self.modalShow
+
                 self.formPost.title = null
                 self.formPost.body = null
                 self.formPost.id = ''
+
                 self.$nuxt.refresh()
             })
         }
     }
-}
+})
 </script>

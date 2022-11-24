@@ -21,12 +21,24 @@
             <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center">
             </b-pagination>
         </div>
+
+        <b-modal title="Notification"
+          size="sm"
+          buttonSize="sm"
+          okVariant="success"
+          headerClass="p-2 border-bottom-0"
+          footerClass="p-2 border-top-0"
+          :centered="true"
+          v-model="notifModal"
+          >
+            {{ notifMessage }}
+        </b-modal>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-export default {
+export default Vue.extend({
     data (){
         return {
             users: null,
@@ -34,7 +46,9 @@ export default {
             currentPage: 1,
             rows: 100,
             perPage: 10,
-            param: ''
+            param: '',
+            notifModal: false,
+            notifMessage: '',
         }
     },
 
@@ -44,10 +58,6 @@ export default {
         ).then(res => res.json())
 
         return {users: response}
-
-        // this.users = await this.$axios.$get(
-        //     'https://gorest.co.in/public/v2/users'
-        // )
     },
 
     methods : {
@@ -61,7 +71,8 @@ export default {
                 'https://gorest.co.in/public/v2/users/' + userID,
                 {headers: headers}
             ).then(function(){
-                alert('User ID : ' + userID + ' has been Deleted!')
+                self.notifMessage = 'User ID : ' + userID + ' has been Deleted!'
+                self.notifModal = !self.notifModal
                 self.$nuxt.refresh()
             })
         },
@@ -82,5 +93,5 @@ export default {
             }
         }
     }
-}
+})
 </script>
