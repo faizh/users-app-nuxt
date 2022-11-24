@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="text-left">
-            <h3>DAFTAR PENGGUNA</h3>
-            <nuxt-link :to="{name: 'users-create'}" class="btn btn-add btn-primary float-right">Buat Pengguna</nuxt-link>
+        <div class="content p-3">
+            <span class="text-center"><h3>DAFTAR PENGGUNA</h3></span>
+            <nuxt-link :to="{name: 'users-create'}" class="btn btn-add btn-primary float-right mb-2">Buat Pengguna</nuxt-link>
 
             <b-table striped hover :items="users" :fields="fields">
                 <template #cell(actions)="data">
@@ -18,7 +18,7 @@
                 </template>
             </b-table>
 
-            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage">
+            <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center">
             </b-pagination>
         </div>
     </div>

@@ -1,26 +1,26 @@
 <template>
     <div class="p-3">
-        <h3 class="text-center">LIHAT PENGGUNA</h3>
+        <span class="text-center"><h3>Lihat Pengguna</h3></span>
         <table>
             <tr>
-                <td>NAMA</td>
+                <td>Nama</td>
                 <td>:</td>
                 <td>{{ user.name }}</td>
             </tr>
             <tr>
-                <td>GENDER</td>
+                <td>Gender</td>
                 <td>:</td>
                 <td>{{ user.gender }}</td>
             </tr>
             <tr>
-                <td>EMAIL</td>
+                <td>Email</td>
                 <td>:</td>
                 <td>{{ user.email }}</td>
             </tr>
         </table>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
-                <span>DAFTAR POST</span>
+                <span class="font-weight-bold" style="font-size: 20px">Daftar Post</span>
                 <b-btn variant="primary float-right" @click="modalShow = !modalShow">
                     BUAT POST
                 </b-btn>
